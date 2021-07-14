@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.SecondaryController">
+<VBox fx:id="vBID" alignment="CENTER" prefHeight="564.0" prefWidth="722.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.SecondaryController">
     <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
+        <Label fx:id="labelOneID" prefHeight="18.0" prefWidth="96.0" text="&quot;YOUR NUMBER&quot;" />
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="682.0" spacing="100.0">
+         <children>
+            <ImageView fx:id="leftOptionID" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../files/pics/leftArrow.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" text="ROTATE" />
+            <ImageView fx:id="rigthOptionID" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../files/pics/rightArrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <StackPane fx:id="sPaneID" prefHeight="378.0" prefWidth="682.0" />
+      <Label fx:id="labelStateID" text="NOW YOU CAN ROTATE OR DELETE" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
