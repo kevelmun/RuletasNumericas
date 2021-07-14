@@ -1,5 +1,7 @@
 package com.mycompany.grupo_07;
 
+import TDAs.List;
+import TDAs.SimpleCirculeLinkedList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

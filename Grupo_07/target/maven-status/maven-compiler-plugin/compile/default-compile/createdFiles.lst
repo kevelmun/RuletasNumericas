@@ -1,4 +1,7 @@
 com\mycompany\grupo_07\SecondaryController.class
+objects\CircleShape.class
 module-info.class
 com\mycompany\grupo_07\PrimaryController.class
+objects\Orbit.class
+objects\CircularPane.class
 com\mycompany\grupo_07\App.class
