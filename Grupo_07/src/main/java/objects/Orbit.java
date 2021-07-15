@@ -31,17 +31,20 @@ public class Orbit{
     private Circle ring;
     private double radius;
     private int deleted;
+    private int total;
     
     
     
     //Poner constructor una vez ya este implementado el TDA de la lista circular
     public Orbit(double r, int n) {
+        total = 0;
+        radius = r;
         elements = new SimpleCirculeLinkedList<>();
         ring = new Circle(r);
         ring.setFill(null);
         ring.setStroke(Color.WHITE);
-        radius = r;
-        generateElements(n);
+        this.generateElements(n);
+        this.calculateTotal();
     }
 
     public CircularPane updateCirclePane() {
@@ -50,9 +53,9 @@ public class Orbit{
             CircleShape c = new CircleShape(10,Color.WHITE,elements.get(i).getNumber());
             c.getContent().setId(String.valueOf(i));
             c.getContent().setOnMouseClicked(e->{
-                
                 deleted= Integer.parseInt(c.getContent().getId());
             });
+            calculateTotal();
             pane.getChildren().add(i,c.getContent());
         }
         
@@ -84,7 +87,47 @@ public class Orbit{
             elements.get(i).setNumber(elements.get(i).getNumber()+1);
         }
     }
+    
+    public void calculateTotal(){
+        int t = 0;
+        for (int i=0 ; i<elements.size() ; i++){
+            t+= elements.get(i).getNumber();
+        }
+        total = t;
+    }
 
+    public SimpleCirculeLinkedList<CircleShape> getElements() {
+        return elements;
+    }
+
+    public void setElements(SimpleCirculeLinkedList<CircleShape> elements) {
+        this.elements = elements;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+    
     public Circle getRing() {
         return ring;
     }

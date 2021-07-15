@@ -58,6 +58,7 @@ public class SecondaryController {
         orbit2 = new Orbit(80,nCircles);
         sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
         sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
+        labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
         System.out.println(state);
         
         
@@ -67,10 +68,6 @@ public class SecondaryController {
         }if(state==1 || state ==0){
             System.out.println("HOLA");
         }
-        
-        
-        
-        
     }
     
     
@@ -103,6 +100,7 @@ public class SecondaryController {
         }
         sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
         sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
+        labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
         labelStateID.setText("NOW YOU GOT TO DELETE");
         
     }
@@ -112,14 +110,10 @@ public class SecondaryController {
     }
     
    
-   public void deleteOption(){
+    public void deleteOption(){
        this.setState(-1);
-       
-       System.out.println("ELIMINANDO");
-       
-       
-       
-   }
+       System.out.println("ELIMINANDO");  
+    }
    
    
     public void readData() throws FileNotFoundException, IOException{
