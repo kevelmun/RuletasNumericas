@@ -40,8 +40,11 @@ public class SecondaryController {
     private int prediction;
     private int nCircles;
     private Orbit orbit;
+    private Orbit orbit2;
+    @FXML
+    private Label labelActualNID;
     
-    
+    @FXML
     private void initialize(){
         
         try {
@@ -50,28 +53,47 @@ public class SecondaryController {
             ex.printStackTrace();
         }
        
-        orbit = new Orbit(50,5);
+        orbit = new Orbit(40,nCircles);
+        orbit2 = new Orbit(80,nCircles);
         sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
+        sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
         rotateOption();
     
     }
     
-            
-    
-   public void rotateOption(){
+    public void rotateToLeft(){
         leftOptionID.setOnMouseClicked(e->{
             System.out.println("ROTANDO A LA IZQUIERDA");
             sPaneID.getChildren().remove(1);
+            sPaneID.getChildren().remove(2);
             orbit.rotateLeft();
+            orbit2.rotateLeft();
             sPaneID.getChildren().add(orbit.updateCirclePane());
+            sPaneID.getChildren().add(orbit2.updateCirclePane());
+            labelStateID.setText("NOW YOU GOT TO DELETE");
+        });
+    }
+    
+    public void rotateOption(){
+        leftOptionID.setOnMouseClicked(e->{
+            System.out.println("ROTANDO A LA IZQUIERDA");
+            sPaneID.getChildren().remove(1);
+            sPaneID.getChildren().remove(2);
+            orbit.rotateLeft();
+            orbit2.rotateLeft();
+            sPaneID.getChildren().add(orbit.updateCirclePane());
+            sPaneID.getChildren().add(orbit2.updateCirclePane());
             labelStateID.setText("NOW YOU GOT TO DELETE");
         });
 
         rigthOptionID.setOnMouseClicked(e->{
             System.out.println("ROTANDO A LA DERECHA");
             sPaneID.getChildren().remove(1);
+            sPaneID.getChildren().remove(2);
             orbit.rotateRight();
+            orbit2.rotateRight();
             sPaneID.getChildren().add(orbit.updateCirclePane());
+            sPaneID.getChildren().add(orbit2.updateCirclePane());
             labelStateID.setText("NOW YOU GOT TO DELETE");
         });
    }
@@ -91,10 +113,9 @@ public class SecondaryController {
         line = bufferedReader.readLine();
         list= line.split(",");
         reader.close();
-
-    this.labelOneID.setText(list[0]);
-    this.prediction=Integer.parseInt(list[0]);
-    this.nCircles =Integer.parseInt(list[1]);
+        this.labelOneID.setText(list[0]);
+        this.prediction=Integer.parseInt(list[0]);
+        this.nCircles =Integer.parseInt(list[1]);
     }
    
 }

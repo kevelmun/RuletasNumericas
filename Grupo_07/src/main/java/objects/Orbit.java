@@ -38,7 +38,7 @@ public class Orbit{
         elements = new SimpleCirculeLinkedList<>();
         ring = new Circle(r);
         ring.setFill(null);
-        ring.setStroke(Color.BLACK);
+        ring.setStroke(Color.WHITE);
         radius = r;
         generateElements(n);
     }
@@ -46,7 +46,7 @@ public class Orbit{
     public CircularPane updateCirclePane() {
         CircularPane pane = new CircularPane(radius);
         for(int i = 0; i<elements.size(); i++) {
-            CircleShape c = new CircleShape(10,Color.RED,elements.get(i).getNumber());
+            CircleShape c = new CircleShape(10,Color.WHITE,elements.get(i).getNumber());
             pane.getChildren().add(i,c.getContent());
         }
         return pane;
@@ -55,7 +55,7 @@ public class Orbit{
     public void generateElements(int cantidad){
         Random rand = new Random();
         for (int i=0 ; i<cantidad ; i++){
-            CircleShape c = new CircleShape(10,Color.RED,rand.nextInt(10));
+            CircleShape c = new CircleShape(20,Color.WHITE,rand.nextInt(10));
             elements.addLast(c);
         }
     }
