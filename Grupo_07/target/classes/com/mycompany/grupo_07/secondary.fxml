@@ -16,7 +16,7 @@
             <Font name="Rockwell" size="21.0" />
          </font>
       </Label>
-        <Label fx:id="labelOneID" prefHeight="18.0" prefWidth="18.0" text="12" textAlignment="CENTER" textFill="WHITE">
+        <Label fx:id="labelOneID" alignment="CENTER" prefHeight="22.0" prefWidth="85.0" text="12" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font></Label>

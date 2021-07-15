@@ -35,8 +35,9 @@ public class SecondaryController {
     private ImageView rigthOptionID;
     @FXML
     private Label labelStateID;
-
-    private boolean state;
+    //state = -1 (turno de rotar)
+    //state = 1 (turno de eliminar)
+    private int state=0;
     private int prediction;
     private int nCircles;
     private Orbit orbit;
@@ -57,51 +58,67 @@ public class SecondaryController {
         orbit2 = new Orbit(80,nCircles);
         sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
         sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
-        rotateOption();
-    
+        System.out.println(state);
+        
+        
+        if(state==-1 || state ==0){
+            
+            rotateOption();
+        }if(state==1 || state ==0){
+            System.out.println("HOLA");
+        }
+        
+        
+        
+        
     }
     
-    public void rotateToLeft(){
-        leftOptionID.setOnMouseClicked(e->{
-            System.out.println("ROTANDO A LA IZQUIERDA");
-            sPaneID.getChildren().remove(1);
-            sPaneID.getChildren().remove(2);
-            orbit.rotateLeft();
-            orbit2.rotateLeft();
-            sPaneID.getChildren().add(orbit.updateCirclePane());
-            sPaneID.getChildren().add(orbit2.updateCirclePane());
-            labelStateID.setText("NOW YOU GOT TO DELETE");
-        });
-    }
     
     public void rotateOption(){
+        
         leftOptionID.setOnMouseClicked(e->{
             System.out.println("ROTANDO A LA IZQUIERDA");
-            sPaneID.getChildren().remove(1);
-            sPaneID.getChildren().remove(2);
-            orbit.rotateLeft();
-            orbit2.rotateLeft();
-            sPaneID.getChildren().add(orbit.updateCirclePane());
-            sPaneID.getChildren().add(orbit2.updateCirclePane());
-            labelStateID.setText("NOW YOU GOT TO DELETE");
+            this.setState(1);
+            this.rotate("left");
         });
 
         rigthOptionID.setOnMouseClicked(e->{
+            this.setState(1);
             System.out.println("ROTANDO A LA DERECHA");
-            sPaneID.getChildren().remove(1);
-            sPaneID.getChildren().remove(2);
+            this.rotate("right"); 
+            
+        });
+        
+        
+   }
+
+    public void rotate(String direction){
+        sPaneID.getChildren().clear();
+        if(direction.equals("right")){
             orbit.rotateRight();
             orbit2.rotateRight();
-            sPaneID.getChildren().add(orbit.updateCirclePane());
-            sPaneID.getChildren().add(orbit2.updateCirclePane());
-            labelStateID.setText("NOW YOU GOT TO DELETE");
-        });
-   }
+        }else if (direction.equals("left")){
+            orbit.rotateLeft();
+            orbit2.rotateLeft();
+        }
+        sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
+        sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
+        labelStateID.setText("NOW YOU GOT TO DELETE");
+        
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
     
    
    public void deleteOption(){
-   
-   //Aun no se como hacerla, mañana la terminaré
+       this.setState(-1);
+       
+       System.out.println("ELIMINANDO");
+       
+       
+       
    }
    
    

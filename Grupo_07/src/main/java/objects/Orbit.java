@@ -30,6 +30,7 @@ public class Orbit{
     private SimpleCirculeLinkedList<CircleShape> elements;
     private Circle ring;
     private double radius;
+    private int deleted;
     
     
     
@@ -47,8 +48,14 @@ public class Orbit{
         CircularPane pane = new CircularPane(radius);
         for(int i = 0; i<elements.size(); i++) {
             CircleShape c = new CircleShape(10,Color.WHITE,elements.get(i).getNumber());
+            c.getContent().setId(String.valueOf(i));
+            c.getContent().setOnMouseClicked(e->{
+                
+                deleted= Integer.parseInt(c.getContent().getId());
+            });
             pane.getChildren().add(i,c.getContent());
         }
+        
         return pane;
     }
 

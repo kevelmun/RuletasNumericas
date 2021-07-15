@@ -31,7 +31,7 @@ public class CircularPane extends Pane {
     
     @Override
     protected void layoutChildren() {
-        if(getChildren().size()!=0){
+        if(!getChildren().isEmpty()){
         final double increment = 360 / getChildren().size();
         double degreese = 0;
         for (Node node : getChildren()) {

@@ -64,6 +64,11 @@ public class CircleShape {
     public void setContent(StackPane content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "CircleShape{" + "number=" + number + '}';
+    }
     
     
     
