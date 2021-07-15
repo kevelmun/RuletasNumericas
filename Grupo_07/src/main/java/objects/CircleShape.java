@@ -18,15 +18,15 @@ import javafx.scene.text.TextBoundsType;
 public class CircleShape {
     private double radious;
     private Color color;
-    private String number;
+    private int number;
     private StackPane content;
 
-    public CircleShape(double radious, Color color, String number) {
+    public CircleShape(double radious, Color color, int number) {
         this.radious = radious;
         this.color = color;
         this.number = number;
         Circle circle = new Circle(radious, color);
-        Text text = new Text(number);
+        Text text = new Text(String.valueOf(number));
         text.setBoundsType(TextBoundsType.VISUAL); 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(circle, text);
@@ -49,11 +49,11 @@ public class CircleShape {
         this.color = color;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 

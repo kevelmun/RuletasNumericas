@@ -5,9 +5,12 @@
  */
 package objects;
 
+import TDAs.SimpleCirculeLinkedList;
+import java.util.Random;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
@@ -24,14 +27,55 @@ import javafx.scene.shape.Circle;
  
  */
 public class Orbit{
-    //private "aqui va la lista circular"<CircleShape> elements;
+    private SimpleCirculeLinkedList<CircleShape> elements;
     private Circle ring;
+    private double radius;
+    
+    
     
     //Poner constructor una vez ya este implementado el TDA de la lista circular
-    
+    public Orbit(double r, int n) {
+        elements = new SimpleCirculeLinkedList<>();
+        ring = new Circle(r);
+        ring.setFill(null);
+        ring.setStroke(Color.BLACK);
+        radius = r;
+        generateElements(n);
+    }
+
     public CircularPane updateCirclePane() {
-        //clase a completar
-        return null;
+        CircularPane pane = new CircularPane(radius);
+        for(int i = 0; i<elements.size(); i++) {
+            CircleShape c = new CircleShape(10,Color.RED,elements.get(i).getNumber());
+            pane.getChildren().add(i,c.getContent());
+        }
+        return pane;
+    }
+
+    public void generateElements(int cantidad){
+        Random rand = new Random();
+        for (int i=0 ; i<cantidad ; i++){
+            CircleShape c = new CircleShape(10,Color.RED,rand.nextInt(10));
+            elements.addLast(c);
+        }
+    }
+
+    public void rotateLeft(){
+        CircleShape tempCircle = elements.getFirat();
+        elements.removeFirst();
+        elements.addLast(tempCircle);
+        for (int i=0 ; i<elements.size() ; i++){
+            elements.get(i).setNumber(elements.get(i).getNumber()-1);
+        }
+    }
+
+    public void rotateRight(){
+        CircleShape tempCircle = elements.getLast();
+        elements.removeLast();
+        elements.addFirst(tempCircle);
+        for (int i=0 ; i<elements.size() ; i++){
+            elements.get(i).setNumber(elements.get(i).getNumber()+1);
+        }
     }
 
     public Circle getRing() {
