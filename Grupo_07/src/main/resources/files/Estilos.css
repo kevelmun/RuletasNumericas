@@ -1,0 +1,15 @@
+#FisrtBackG{
+    -fx-background-image: url("@../../../backGPics/OrbitBack2.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: stretch;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#SecondBackG{
+    -fx-background-image: url("@../../../backGPics/JustBack.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: stretch;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}

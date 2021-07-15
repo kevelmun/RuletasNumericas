@@ -1,5 +1,9 @@
 package com.mycompany.grupo_07;
 
+import TDAs.SimpleCirculeLinkedList;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -30,19 +34,22 @@ public class SecondaryController {
     private ImageView rigthOptionID;
     @FXML
     private Label labelStateID;
+    @FXML
+    private Label labelActualNID;
     
-    private boolean state=true;
+    
+    private boolean state;
+    private int prediction;
+    private int nCircles;
+    
     
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
     
     
-    @FXML
     private void initialize(){
-
-    
-    
+       
      //TODA ESTA LOGICA TENDRA QUE SER AÑADIDA A LA CLASE Orbit en particual al metodo updateCirclePane() DE "AQUI"
      CircularPane pane = new CircularPane(50);
     for(int i = 0; i < 5/* i<orbit.get*/; i++) {
@@ -56,7 +63,7 @@ public class SecondaryController {
     }
     Circle circle = new Circle(50);
     circle.setFill(null);
-    circle.setStroke(Color.BLACK);
+    circle.setStroke(Color.WHITE);
     //HASTA AQUI
     
     
@@ -114,6 +121,23 @@ public class SecondaryController {
    }
    
    
-   
+   public void readData() throws FileNotFoundException, IOException{
+   String[] list;
+    
+            FileReader reader = new FileReader(App.pathJuego);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            line = bufferedReader.readLine();
+            
+            list= line.split(",");
+               
+                
+            
+            reader.close();
+ 
+   this.labelOneID.setText(list[0]);
+   this.prediction=Integer.parseInt(list[0]);
+   this.nCircles =Integer.parseInt(list[1]);
+   }
    
 }

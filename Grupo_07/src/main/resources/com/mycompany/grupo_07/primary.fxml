@@ -7,25 +7,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="506.0" prefWidth="690.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.PrimaryController">
+<VBox id="FisrtBackG" alignment="CENTER_LEFT" prefHeight="548.0" prefWidth="596.0" spacing="20.0" stylesheets="@../../../files/Estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.PrimaryController">
    <children>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="234.0" text="Ruletas Numéricas" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="550.0" text="Ruletas Numéricas" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Snap ITC" size="20.0" />
+            <Font name="Kunstler Script" size="71.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="100.0" />
-         </VBox.margin></Label>
-      <Label alignment="CENTER" layoutX="229.0" layoutY="195.0" prefHeight="18.0" prefWidth="146.0" text="Inserte Predicción" textAlignment="CENTER">
+            <Insets bottom="50.0" />
+         </VBox.margin>
+      </Label>
+      <Label alignment="CENTER" layoutX="229.0" layoutY="195.0" prefHeight="38.0" prefWidth="146.0" text="Inserte Predicción" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldID" alignment="CENTER" prefHeight="26.0" prefWidth="458.0" />
-      <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Jugar">
+      <TextField fx:id="textFieldID" alignment="CENTER" maxWidth="200.0" prefHeight="0.0" prefWidth="200.0" />
+      <Label alignment="CENTER" layoutX="282.0" layoutY="284.0" prefHeight="18.0" prefWidth="188.0" text="Inserte #Circulos en Orbita" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldID2" alignment="CENTER" layoutX="255.0" layoutY="304.0" maxWidth="200.0" prefHeight="10.0" prefWidth="20.0" />
+      <Label fx:id="errorLabelID" textFill="#8e1212">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font></Label>
+      <Button fx:id="primaryButton" alignment="CENTER" contentDisplay="CENTER" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="106.0" text="Comenzar Juego" textAlignment="CENTER">
          <font>
             <Font name="Harrington" size="12.0" />
-         </font></Button>
+         </font>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Button>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
