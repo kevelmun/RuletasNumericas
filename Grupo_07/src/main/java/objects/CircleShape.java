@@ -30,6 +30,7 @@ public class CircleShape {
         text.setBoundsType(TextBoundsType.VISUAL); 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(circle, text);
+        stack.setMaxSize(10, 10);
         this.content=stack;
     }
 

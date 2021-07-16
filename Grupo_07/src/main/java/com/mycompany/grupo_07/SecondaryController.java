@@ -6,9 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -44,6 +47,12 @@ public class SecondaryController {
     private Orbit orbit2;
     @FXML
     private Label labelActualNID;
+    @FXML
+    private ToggleGroup rotate;
+    @FXML
+    private RadioButton innerOptionID;
+    @FXML
+    private RadioButton outerOptionID;
     
     @FXML
     private void initialize(){
@@ -56,9 +65,7 @@ public class SecondaryController {
        
         orbit = new Orbit(40,nCircles);
         orbit2 = new Orbit(80,nCircles);
-        sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
-        sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
-        labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
+        update();
         System.out.println(state);
         
         
@@ -82,25 +89,24 @@ public class SecondaryController {
         rigthOptionID.setOnMouseClicked(e->{
             this.setState(1);
             System.out.println("ROTANDO A LA DERECHA");
-            this.rotate("right"); 
-            
-        });
-        
-        
+            this.rotate("right");  
+        });   
    }
 
     public void rotate(String direction){
         sPaneID.getChildren().clear();
         if(direction.equals("right")){
+            if(innerOptionID.isSelected())
             orbit.rotateRight();
+            if(outerOptionID.isSelected())
             orbit2.rotateRight();
         }else if (direction.equals("left")){
+            if(innerOptionID.isSelected())
             orbit.rotateLeft();
+            if(outerOptionID.isSelected())
             orbit2.rotateLeft();
         }
-        sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
-        sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
-        labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
+        update();
         labelStateID.setText("NOW YOU GOT TO DELETE");
         
     }
@@ -109,6 +115,11 @@ public class SecondaryController {
         this.state = state;
     }
     
+    public void update(){
+        sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
+        sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
+        labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
+    }
    
     public void deleteOption(){
        this.setState(-1);
