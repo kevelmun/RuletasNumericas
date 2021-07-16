@@ -2,12 +2,16 @@ package com.mycompany.grupo_07;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable{
 
     @FXML
     private TextField textFieldID;
@@ -46,7 +50,13 @@ public class PrimaryController {
         
         
     }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        validarNumeros(textFieldID);
+        validarNumeros(textFieldID2);
+    }
     
-    
-    
+    private static void validarNumeros(TextField tx){
+        tx.setTextFormatter(new TextFormatter<>(change -> (change.getControlNewText().matches("([0-9]*)$"))?change:null));  
+    }  
 }

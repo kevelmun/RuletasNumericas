@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="FisrtBackG" alignment="CENTER_LEFT" prefHeight="548.0" prefWidth="596.0" spacing="20.0" stylesheets="@../../../files/Estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.PrimaryController">
+<VBox id="FisrtBackG" alignment="CENTER_LEFT" prefHeight="548.0" prefWidth="596.0" spacing="20.0" stylesheets="@../../../files/Estilos.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.PrimaryController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="550.0" text="Ruletas Numéricas" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -33,7 +33,7 @@
          <font>
             <Font name="Century" size="12.0" />
          </font></Label>
-      <Button fx:id="primaryButton" alignment="CENTER" contentDisplay="CENTER" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="106.0" text="Comenzar Juego" textAlignment="CENTER">
+      <Button id="record-sales" fx:id="primaryButton" alignment="CENTER" contentDisplay="CENTER" onAction="#switchToSecondary" prefHeight="39.0" prefWidth="133.0" stylesheets="@../../../files/Estilos.css" text="Comenzar Juego" textAlignment="CENTER">
          <font>
             <Font name="Harrington" size="12.0" />
          </font>
