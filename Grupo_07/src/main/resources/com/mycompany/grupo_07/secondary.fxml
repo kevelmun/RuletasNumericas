@@ -34,7 +34,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="CENTER" text="ROTATE" textFill="WHITE">
+            <Label fx:id="labelRotateID" alignment="CENTER" text="ROTATE" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="12.0" />
                </font></Label>
@@ -68,7 +68,11 @@
             <RadioButton fx:id="outerOptionID" mnemonicParsing="false" text="Outer Orbit " textFill="#fffefe" toggleGroup="$rotate">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></RadioButton>
+               </cursor>
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin></RadioButton>
+            <RadioButton fx:id="allOptionID" mnemonicParsing="false" text="All" textFill="WHITE" toggleGroup="$rotate" />
          </children>
       </HBox>
       <StackPane fx:id="sPaneID" prefHeight="378.0" prefWidth="682.0" />

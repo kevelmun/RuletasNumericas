@@ -49,12 +49,17 @@ public class SecondaryController {
     private HBox hbRotateID;
     @FXML
     private Label labelActualNID1;
+    @FXML
+    private RadioButton allOptionID;
+    @FXML
+    private Label labelRotateID;
     private int state=0;
     private int prediction;
     private int nCircles;
     private Orbit orbit;
     private Orbit orbit2;
     private int s1, s2, id;
+    
     
     @FXML
     private void initialize() throws IOException{
@@ -101,14 +106,22 @@ public class SecondaryController {
        sPaneID.getChildren().clear();
         if(direction.equals("right")){
             if(innerOptionID.isSelected())
-            orbit.rotateRight();
+                orbit.rotateRight();
             if(outerOptionID.isSelected())
-            orbit2.rotateRight();
+                orbit2.rotateRight();
+            if (allOptionID.isSelected()){
+                orbit.rotateRight();
+                orbit2.rotateRight(); 
+            }
         }else if (direction.equals("left")){
             if(innerOptionID.isSelected())
-            orbit.rotateLeft();
+                orbit.rotateLeft();
             if(outerOptionID.isSelected())
-            orbit2.rotateLeft();
+                orbit2.rotateLeft();
+            if (allOptionID.isSelected()){
+                orbit.rotateLeft();
+                orbit2.rotateLeft(); 
+            }
         }
         update();
         labelStateID.setText("NOW YOU HAVE TO DELETE");
@@ -149,6 +162,7 @@ public class SecondaryController {
         leftOptionID.setVisible(valor);
         rigthOptionID.setVisible(valor);       
         hbRotateID.setVisible(valor);
+        labelRotateID.setVisible(valor);
     }
     
     public void enableDelete(boolean valor){
