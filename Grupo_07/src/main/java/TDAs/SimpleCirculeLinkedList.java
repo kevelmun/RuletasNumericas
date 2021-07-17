@@ -137,12 +137,10 @@ public class SimpleCirculeLinkedList<E> implements List<E>{
 
             E tmp = getFirat();
             removeFirst();
-            size--;
             return tmp;
        }else if( index == size - 1){
            E tmp = getLast();
            removeLast();
-           size--;
            return tmp;
         }
         NodeSimpleCircularList<E> j = getHeader();

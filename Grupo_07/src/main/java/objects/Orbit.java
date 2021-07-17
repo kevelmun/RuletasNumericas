@@ -45,6 +45,7 @@ public class Orbit{
         ring.setStroke(Color.WHITE);
         this.generateElements(n);
         this.calculateTotal();
+        deleted=-1;
     }
 
     public CircularPane updateCirclePane() {

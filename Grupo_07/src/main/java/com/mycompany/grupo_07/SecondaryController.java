@@ -5,10 +5,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -56,6 +59,8 @@ public class SecondaryController {
     private RadioButton outerOptionID;
     @FXML
     private Button btnDeleteID;
+    
+    private int s1, s2, id;
     
     @FXML
     private void initialize(){
@@ -123,8 +128,8 @@ public class SecondaryController {
     }
     
     public void update(){
-        sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
         sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
+        sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
         labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
     }
    
@@ -157,9 +162,47 @@ public class SecondaryController {
     
     @FXML
     private void btnDelete(MouseEvent event) {
+        int a= orbit.getDeleted();
+        int b= orbit2.getDeleted();
+        if(a!=(-1) || b!=(-1)){
+            if(confimacion()){
+                int c=Math.max(a, b);
+                eliminarActualizar(c);
+            }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You have to select in some circle to be able to delete the couple");
+            alert.setHeaderText("Incorrect selection");
+            alert.show();
+              
+        } 
+    }
+    public void eliminarActualizar(int c){
+        orbit.getElements().remove(c);
+        orbit2.getElements().remove(c);
+        orbit.setDeleted(-1);
+        orbit2.setDeleted(-1);
+        sPaneID.getChildren().clear();
+        update();
         enableDelete(false);
-        enableRotation(true);
+        enableRotation(true); 
+    }
+    
+    public boolean confimacion(){
+        if(orbit.getDeleted()!=-1){
+            id=orbit.getDeleted();
+            s1=orbit.getElements().get(id).getNumber();
+            s2=orbit2.getElements().get(id).getNumber();
+        }else if( orbit2.getDeleted()!=-1 ){
+            id=orbit2.getDeleted();
+            s1=orbit.getElements().get(id).getNumber();
+            s2=orbit2.getElements().get(id).getNumber();
+        }
         
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        String texto="¿In Orbit: "+s1+"  |  "+" Out Orbit: "+s2+"?";
+        alert.setHeaderText(texto);
+        Optional<ButtonType> option = alert.showAndWait();
+        return option.get() == ButtonType.OK;
     }
    
 }
