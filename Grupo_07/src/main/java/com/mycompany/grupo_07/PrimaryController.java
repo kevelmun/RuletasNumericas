@@ -58,6 +58,8 @@ public class PrimaryController implements Initializable{
     }
     
     public boolean validadCeros(String s){
+        if(s.equals(""))
+            return false;
         return Integer.parseInt(s)!=0;
     }
     private static void validarNumeros(TextField tx, String st){
