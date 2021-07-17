@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 public class CircularPane extends Pane {
 
     private final double radius;
-    //El atributo state ayuda a ver si el juego debe continuar o no
     private boolean state = true;
     
     public CircularPane(double radius){
@@ -41,7 +40,6 @@ public class CircularPane extends Pane {
             degreese += increment;
         }
         }else{
-        //Si el circularPane esta vacio significa que el jugador se quedo sin circulos en orbita y por tanto perdio el juego
         this.state=false;
            
         }

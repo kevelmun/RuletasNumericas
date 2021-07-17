@@ -1,14 +1,11 @@
 package com.mycompany.grupo_07;
 
-import TDAs.SimpleCirculeLinkedList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Optional;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
-import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -17,15 +14,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import objects.CircleShape;
-import objects.CircularPane;
 import objects.Orbit;
 
 
@@ -43,13 +35,6 @@ public class SecondaryController {
     private ImageView rigthOptionID;
     @FXML
     private Label labelStateID;
-    //state = -1 (turno de rotar)
-    //state = 1 (turno de eliminar)
-    private int state=0;
-    private int prediction;
-    private int nCircles;
-    private Orbit orbit;
-    private Orbit orbit2;
     @FXML
     private Label labelActualNID;
     @FXML
@@ -60,13 +45,16 @@ public class SecondaryController {
     private RadioButton outerOptionID;
     @FXML
     private Button btnDeleteID;
-    
-    private int s1, s2, id;
     @FXML
     private HBox hbRotateID;
     @FXML
     private Label labelActualNID1;
-    
+    private int state=0;
+    private int prediction;
+    private int nCircles;
+    private Orbit orbit;
+    private Orbit orbit2;
+    private int s1, s2, id;
     
     @FXML
     private void initialize() throws IOException{
@@ -76,22 +64,16 @@ public class SecondaryController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-       
         orbit = new Orbit(40,nCircles, Color.WHITE);
         orbit2 = new Orbit(80,nCircles, Color.GOLDENROD);
-        update();
-                
-            rotateOption();
-            
-            
-            
+        update();       
+        rotateOption();
     }
     
     
     public void rotateOption(){
         
         leftOptionID.setOnMouseClicked(e->{
-            System.out.println("ROTANDO A LA IZQUIERDA");
             this.setState(1);
             try {
                 this.rotate("left");
@@ -104,7 +86,6 @@ public class SecondaryController {
 
         rigthOptionID.setOnMouseClicked(e->{
             this.setState(1);
-            System.out.println("ROTANDO A LA DERECHA");
             try {
                 this.rotate("right");
             } catch (IOException ex) {
@@ -130,12 +111,7 @@ public class SecondaryController {
             orbit2.rotateLeft();
         }
         update();
-        labelStateID.setText("NOW YOU GOT TO DELETE");
-        
-       
-        
-        
-        
+        labelStateID.setText("NOW YOU HAVE TO DELETE");
     }
 
     public void setState(int state) {
@@ -174,15 +150,13 @@ public class SecondaryController {
         rigthOptionID.setVisible(valor);       
         hbRotateID.setVisible(valor);
     }
+    
     public void enableDelete(boolean valor){
         btnDeleteID.setVisible(valor);
     }
     
     @FXML
     private void btnDelete(MouseEvent event) throws IOException{
-         
-        
-        
         int a= orbit.getDeleted();
         int b= orbit2.getDeleted();
         if(a!=(-1) || b!=(-1)){
@@ -202,18 +176,11 @@ public class SecondaryController {
             Alert alert = new Alert(Alert.AlertType.ERROR, "You have to select some circle to be able to delete the couple");
             alert.setHeaderText("Incorrect selection");
             alert.showAndWait();
-            
-            
-            
-              
         }
-        
-        
-        
-        
-      
-        
+        labelStateID.setText("NOW YOU HAVE TO ROTATE");
     }
+    
+    
     public void eliminarActualizar(int c) throws IOException{
         orbit.getElements().remove(c);
         orbit2.getElements().remove(c);
@@ -246,8 +213,5 @@ public class SecondaryController {
         Optional<ButtonType> option = alert.showAndWait();
         
         return option.get() == ButtonType.OK;
-        
     }
-   
-
 }
