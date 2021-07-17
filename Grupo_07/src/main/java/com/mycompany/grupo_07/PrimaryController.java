@@ -26,7 +26,8 @@ public class PrimaryController implements Initializable{
     private void switchToSecondary() throws IOException {
         String prediction = textFieldID.getText();
         String nCircles = textFieldID2.getText();
-        if(!prediction.equals("") && !nCircles.equals("")){
+        boolean ceros=validadCeros(prediction)&& validadCeros(nCircles);
+        if(!prediction.equals("") && !nCircles.equals("") && ceros){
         try {
             FileWriter writer = new FileWriter(App.pathJuego, false);
             writer.write(prediction+","+nCircles);
@@ -41,10 +42,10 @@ public class PrimaryController implements Initializable{
         else if(prediction.equals("") && nCircles.equals("")){
             errorLabelID.setText("DEBE INGRESAR VALORES EN LOS CAMPOS");
         }
-        else if(prediction.equals("")){
-            errorLabelID.setText("DEBE INGRESAR UNA PREDICCION");
-        }else if(nCircles.equals("")){
-            errorLabelID.setText("DEBE INGRESAR LA CANTIDAD DE CIRCULOS EN ORBITA");
+        else if(prediction.equals("") || !validadCeros(prediction)){
+            errorLabelID.setText("DEBE INGRESAR UNA PREDICCION CORRECTA");
+        }else if(nCircles.equals("") || !validadCeros(nCircles)){
+            errorLabelID.setText("DEBE INGRESAR UNA CANTIDAD DE CIRCULOS EN ORBITA CORRECTA");
         }
         
         
@@ -53,9 +54,12 @@ public class PrimaryController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         validarNumeros(textFieldID,"([0-9]*)$");
-        validarNumeros(textFieldID2, "([1-9]*)$");
+        validarNumeros(textFieldID2, "([0-9]*)$");
     }
     
+    public boolean validadCeros(String s){
+        return Integer.parseInt(s)!=0;
+    }
     private static void validarNumeros(TextField tx, String st){
         tx.setTextFormatter(new TextFormatter<>(change -> (change.getControlNewText().matches(st))?change:null));  
     }  

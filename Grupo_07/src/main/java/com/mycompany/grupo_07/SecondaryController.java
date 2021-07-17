@@ -189,7 +189,9 @@ public class SecondaryController {
             if(confimacion()){
                 int c=Math.max(a, b);
                 eliminarActualizar(c);
-            }if(!orbit.getState()){
+            }else
+                setearDeleeted();
+            if(!orbit.getState()){
             Alert alert2 = new Alert(Alert.AlertType.WARNING, "Sorry try again :(");
             alert2.setHeaderText("YOU LOSE!");
             alert2.showAndWait();
@@ -215,12 +217,16 @@ public class SecondaryController {
     public void eliminarActualizar(int c) throws IOException{
         orbit.getElements().remove(c);
         orbit2.getElements().remove(c);
-        orbit.setDeleted(-1);
-        orbit2.setDeleted(-1);
+        setearDeleeted();
         sPaneID.getChildren().clear();
         update();
         enableDelete(false);
         enableRotation(true); 
+    }
+    
+    public void setearDeleeted(){
+        orbit.setDeleted(-1);
+        orbit2.setDeleted(-1);
     }
     
     public boolean confimacion() throws IOException{

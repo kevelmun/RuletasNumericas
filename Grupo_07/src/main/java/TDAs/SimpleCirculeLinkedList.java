@@ -147,7 +147,6 @@ public class SimpleCirculeLinkedList<E> implements List<E>{
         for (int i = 0; i != index-1; i++){
             j = j.getNext();
         }
-        System.out.println("hola 3");
         NodeSimpleCircularList<E> tmp = j.getNext();
         j.setNext(tmp.getNext());
         tmp.setNext(null);
