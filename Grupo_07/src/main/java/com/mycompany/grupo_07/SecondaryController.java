@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -53,6 +54,8 @@ public class SecondaryController {
     private RadioButton innerOptionID;
     @FXML
     private RadioButton outerOptionID;
+    @FXML
+    private Button btnDeleteID;
     
     @FXML
     private void initialize(){
@@ -84,12 +87,16 @@ public class SecondaryController {
             System.out.println("ROTANDO A LA IZQUIERDA");
             this.setState(1);
             this.rotate("left");
+            enableRotation(false);
+            enableDelete(true);
         });
 
         rigthOptionID.setOnMouseClicked(e->{
             this.setState(1);
             System.out.println("ROTANDO A LA DERECHA");
-            this.rotate("right");  
+            this.rotate("right");
+            enableRotation(false);
+            enableDelete(true);
         });   
    }
 
@@ -138,6 +145,21 @@ public class SecondaryController {
         this.labelOneID.setText(list[0]);
         this.prediction=Integer.parseInt(list[0]);
         this.nCircles =Integer.parseInt(list[1]);
+    }
+    
+    public void enableRotation(boolean valor){
+        leftOptionID.setVisible(valor);
+        rigthOptionID.setVisible(valor);       
+    }
+    public void enableDelete(boolean valor){
+        btnDeleteID.setVisible(valor);
+    }
+    
+    @FXML
+    private void btnDelete(MouseEvent event) {
+        enableDelete(false);
+        enableRotation(true);
+        
     }
    
 }
