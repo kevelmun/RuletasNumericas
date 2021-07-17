@@ -32,11 +32,11 @@ public class Orbit{
     private double radius;
     private int deleted;
     private int total;
-    
-    
+    private Color color;
+    private boolean state=true;
     
     //Poner constructor una vez ya este implementado el TDA de la lista circular
-    public Orbit(double r, int n) {
+    public Orbit(double r, int n, Color color) {
         total = 0;
         radius = r;
         elements = new SimpleCirculeLinkedList<>();
@@ -46,19 +46,24 @@ public class Orbit{
         this.generateElements(n);
         this.calculateTotal();
         deleted=-1;
+        this.color = color;
     }
 
     public CircularPane updateCirclePane() {
         CircularPane pane = new CircularPane(radius);
+        
+        if(elements.size()==0){
+        this.state=false;
+        }else{
         for(int i = 0; i<elements.size(); i++) {
-            CircleShape c = new CircleShape(10,Color.WHITE,elements.get(i).getNumber());
+            CircleShape c = new CircleShape(10,this.color,elements.get(i).getNumber());
             c.getContent().setId(String.valueOf(i));
             c.getContent().setOnMouseClicked(e->{
                 deleted= Integer.parseInt(c.getContent().getId());
             });
             calculateTotal();
             pane.getChildren().add(i,c.getContent());
-        }
+        }}
         
         return pane;
     }
@@ -66,7 +71,7 @@ public class Orbit{
     public void generateElements(int cantidad){
         Random rand = new Random();
         for (int i=0 ; i<cantidad ; i++){
-            CircleShape c = new CircleShape(20,Color.WHITE,rand.nextInt(10));
+            CircleShape c = new CircleShape(20,this.color,rand.nextInt(10));
             elements.addLast(c);
         }
     }
@@ -95,6 +100,7 @@ public class Orbit{
             t+= elements.get(i).getNumber();
         }
         total = t;
+        
     }
 
     public SimpleCirculeLinkedList<CircleShape> getElements() {
@@ -135,6 +141,22 @@ public class Orbit{
 
     public void setRing(Circle ring) {
         this.ring = ring;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
     
 }

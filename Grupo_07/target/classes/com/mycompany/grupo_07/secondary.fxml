@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="SecondBackG" fx:id="vBID" alignment="CENTER" prefHeight="564.0" prefWidth="722.0" spacing="20.0" stylesheets="@../../../files/Estilos.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.SecondaryController">
+<VBox id="SecondBackG" fx:id="vBID" alignment="CENTER" prefHeight="564.0" prefWidth="722.0" spacing="20.0" stylesheets="@../../../files/Estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.SecondaryController">
     <children>
       <Label layoutX="323.0" layoutY="30.0" prefHeight="26.0" prefWidth="191.0" text="YOUR PREDICTION" textFill="WHITE">
          <font>
@@ -34,7 +34,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="CENTER" text="ROTATE" textFill="WHITE" />
+            <Label alignment="CENTER" text="ROTATE" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="12.0" />
+               </font></Label>
             <ImageView fx:id="rigthOptionID" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../files/pics/rightArrow.png" />
@@ -45,9 +48,12 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox fx:id="hbRotateID" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="210.0" text="ORBIT TO ROTATE:" textFill="WHITE" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="210.0" text="ORBIT TO ROTATE:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
             <RadioButton fx:id="innerOptionID" mnemonicParsing="false" selected="true" text="Inner Otbit" textFill="WHITE">
                <HBox.margin>
                   <Insets right="50.0" />
@@ -66,9 +72,17 @@
          </children>
       </HBox>
       <StackPane fx:id="sPaneID" prefHeight="378.0" prefWidth="682.0" />
-      <Label fx:id="labelActualNID" alignment="CENTER" text="17" textFill="WHITE" />
+      <Label fx:id="labelActualNID1" alignment="CENTER" layoutX="364.0" layoutY="439.0" prefHeight="23.0" prefWidth="90.0" text="ACTUAL VALUE" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelActualNID" alignment="CENTER" prefHeight="31.0" prefWidth="54.0" text="17" textFill="WHITE" />
       <Button id="record-sales" fx:id="btnDeleteID" mnemonicParsing="false" onMouseClicked="#btnDelete" stylesheets="@../../../files/Estilos.css" text="DELETE" />
-      <Label fx:id="labelStateID" text="NOW YOU CAN ROTATE OR DELETE" textFill="WHITE" />
+      <Label fx:id="labelStateID" text="NOW YOU CAN ROTATE OR DELETE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

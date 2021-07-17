@@ -18,6 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -61,9 +62,14 @@ public class SecondaryController {
     private Button btnDeleteID;
     
     private int s1, s2, id;
+    @FXML
+    private HBox hbRotateID;
+    @FXML
+    private Label labelActualNID1;
+    
     
     @FXML
-    private void initialize(){
+    private void initialize() throws IOException{
         
         try {
             readData();
@@ -71,18 +77,14 @@ public class SecondaryController {
             ex.printStackTrace();
         }
        
-        orbit = new Orbit(40,nCircles);
-        orbit2 = new Orbit(80,nCircles);
+        orbit = new Orbit(40,nCircles, Color.WHITE);
+        orbit2 = new Orbit(80,nCircles, Color.GOLDENROD);
         update();
-        System.out.println(state);
-        
-        
-        if(state==-1 || state ==0){
-            
+                
             rotateOption();
-        }if(state==1 || state ==0){
-            System.out.println("HOLA");
-        }
+            
+            
+            
     }
     
     
@@ -91,7 +93,11 @@ public class SecondaryController {
         leftOptionID.setOnMouseClicked(e->{
             System.out.println("ROTANDO A LA IZQUIERDA");
             this.setState(1);
-            this.rotate("left");
+            try {
+                this.rotate("left");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             enableRotation(false);
             enableDelete(true);
         });
@@ -99,14 +105,19 @@ public class SecondaryController {
         rigthOptionID.setOnMouseClicked(e->{
             this.setState(1);
             System.out.println("ROTANDO A LA DERECHA");
-            this.rotate("right");
+            try {
+                this.rotate("right");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             enableRotation(false);
             enableDelete(true);
         });   
    }
 
-    public void rotate(String direction){
-        sPaneID.getChildren().clear();
+    public void rotate(String direction) throws IOException{
+       
+       sPaneID.getChildren().clear();
         if(direction.equals("right")){
             if(innerOptionID.isSelected())
             orbit.rotateRight();
@@ -121,23 +132,29 @@ public class SecondaryController {
         update();
         labelStateID.setText("NOW YOU GOT TO DELETE");
         
+       
+        
+        
+        
     }
 
     public void setState(int state) {
         this.state = state;
     }
     
-    public void update(){
+    public void update() throws IOException{
         sPaneID.getChildren().addAll(orbit2.getRing(), orbit2.updateCirclePane());
         sPaneID.getChildren().addAll(orbit.getRing(), orbit.updateCirclePane());
         labelActualNID.setText(String.valueOf(orbit.getTotal()+ orbit2.getTotal()));
+        if(prediction==orbit.getTotal()+ orbit2.getTotal()){
+        Alert alert2 = new Alert(Alert.AlertType.WARNING, "Congratulations :D !!!!");
+            alert2.setHeaderText("YOU WIN!!!");
+            alert2.showAndWait();
+            App.setRoot("primary");
+        
+        }
     }
-   
-    public void deleteOption(){
-       this.setState(-1);
-       System.out.println("ELIMINANDO");  
-    }
-   
+
    
     public void readData() throws FileNotFoundException, IOException{
         String[] list;
@@ -155,28 +172,47 @@ public class SecondaryController {
     public void enableRotation(boolean valor){
         leftOptionID.setVisible(valor);
         rigthOptionID.setVisible(valor);       
+        hbRotateID.setVisible(valor);
     }
     public void enableDelete(boolean valor){
         btnDeleteID.setVisible(valor);
     }
     
     @FXML
-    private void btnDelete(MouseEvent event) {
+    private void btnDelete(MouseEvent event) throws IOException{
+         
+        
+        
         int a= orbit.getDeleted();
         int b= orbit2.getDeleted();
         if(a!=(-1) || b!=(-1)){
             if(confimacion()){
                 int c=Math.max(a, b);
                 eliminarActualizar(c);
-            }
+            }if(!orbit.getState()){
+            Alert alert2 = new Alert(Alert.AlertType.WARNING, "Sorry try again :(");
+            alert2.setHeaderText("YOU LOSE!");
+            alert2.showAndWait();
+            App.setRoot("primary");
+        }
         }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR, "You have to select in some circle to be able to delete the couple");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You have to select some circle to be able to delete the couple");
             alert.setHeaderText("Incorrect selection");
-            alert.show();
+            alert.showAndWait();
+            
+            
+            
               
-        } 
+        }
+        
+        
+        
+        
+      
+        
     }
-    public void eliminarActualizar(int c){
+    public void eliminarActualizar(int c) throws IOException{
         orbit.getElements().remove(c);
         orbit2.getElements().remove(c);
         orbit.setDeleted(-1);
@@ -187,7 +223,7 @@ public class SecondaryController {
         enableRotation(true); 
     }
     
-    public boolean confimacion(){
+    public boolean confimacion() throws IOException{
         if(orbit.getDeleted()!=-1){
             id=orbit.getDeleted();
             s1=orbit.getElements().get(id).getNumber();
@@ -202,7 +238,10 @@ public class SecondaryController {
         String texto="¿In Orbit: "+s1+"  |  "+" Out Orbit: "+s2+"?";
         alert.setHeaderText(texto);
         Optional<ButtonType> option = alert.showAndWait();
+        
         return option.get() == ButtonType.OK;
+        
     }
    
+
 }

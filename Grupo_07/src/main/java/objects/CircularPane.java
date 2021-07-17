@@ -43,7 +43,18 @@ public class CircularPane extends Pane {
         }else{
         //Si el circularPane esta vacio significa que el jugador se quedo sin circulos en orbita y por tanto perdio el juego
         this.state=false;
+           
         }
         
     }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+    
+    
 }

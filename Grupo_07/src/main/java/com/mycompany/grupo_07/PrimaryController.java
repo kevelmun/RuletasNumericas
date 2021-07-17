@@ -52,11 +52,12 @@ public class PrimaryController implements Initializable{
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        validarNumeros(textFieldID);
-        validarNumeros(textFieldID2);
+        validarNumeros(textFieldID,"([0-9]*)$");
+        validarNumeros(textFieldID2, "([1-9]*)$");
     }
     
-    private static void validarNumeros(TextField tx){
-        tx.setTextFormatter(new TextFormatter<>(change -> (change.getControlNewText().matches("([0-9]*)$"))?change:null));  
+    private static void validarNumeros(TextField tx, String st){
+        tx.setTextFormatter(new TextFormatter<>(change -> (change.getControlNewText().matches(st))?change:null));  
     }  
+    
 }
